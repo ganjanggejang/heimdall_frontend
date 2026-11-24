@@ -18,8 +18,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Create .env
+        run: echo "${{ secrets.DOTENV }}" > .env
+
       - name: Build iOS
-        run: flutter build ios --release --no-codesign
+        run: flutter build ios --release --no-codesign --dart-define-from-file=.env
 
       - name: Package IPA
         run: |
