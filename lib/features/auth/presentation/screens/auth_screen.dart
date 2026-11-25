@@ -298,6 +298,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         return '서버에 연결할 수 없습니다. 백엔드와 API 주소를 확인해주세요.';
       }
     }
+    const showDetail = bool.fromEnvironment('SHOW_ERROR_DETAIL');
+    if (showDetail) {
+      return '요청을 처리하지 못했습니다.\n$error';
+    }
     return '요청을 처리하지 못했습니다. 잠시 후 다시 시도해주세요.';
   }
 }
